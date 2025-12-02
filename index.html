@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>関西医科大学ラグビー部OB会（会員限定）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ログイン画面用の簡易スタイル */
+    .login-wrapper {
+      max-width: 360px;
+      margin: 120px auto;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .login-wrapper h2 {
+      margin-bottom: 12px;
+    }
+
+    .login-wrapper input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .login-wrapper button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background-color: #0b5b2b;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+
+</head>
+<body>
+
+
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!--   ① パスワード入力画面          -->
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+
+<div id="loginPage" class="login-wrapper">
+  <h2>OB会会員専用ページ</h2>
+  <p>パスワードを入力してください。</p>
+
+  <input type="password" id="passwordInput" placeholder="パスワード">
+  <button onclick="checkPassword()">ログイン</button>
+
+  <p id="errorMessage" style="color:red; margin-top:12px;"></p>
+</div>
+
+
+
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!--   ② 本来のトップページ内容      -->
+<!--     （ログイン後に表示される）   -->
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+
+<div id="realContent" class="hidden">
+
+  <!-- ★ここから先は、あなたの現在の index.html の内容を丸ごと入れてください ★ -->
+  <!-- （省略できるように、必要部分だけ例として記述しています） -->
+
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">関西医科大学ラグビー部OB会</div>
+      <nav class="nav">
+        <a href="#news">お知らせ</a>
+        <a href="#about">OB会について</a>
+        <a href="#history">歴史・戦績</a>
+        <a href="#events">行事予定</a>
+        <a href="#gallery">写真</a>
+        <a href="magazine.html">部誌</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>関西医科大学ラグビー部OB会</h1>
+      <p>医学部ラグビーの伝統と誇りを、次の世代へ。</p>
+
+      <div class="hero-buttons">
+        <a href="magazine.html" class="btn-main">歴代の部誌を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★以下、あなたのトップページの続き（お知らせ・役員一覧など）をそのまま入れてください★ -->
+
+
+</div>
+
+
+
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!--   ③ JavaScript（パスワード認証） -->
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+
+<script>
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+
+  // ★ここに自由なパスワードを設定 ★
+  const correctPassword = "kmu-rugby-makino";
+
+  if (input === correctPassword) {
+    // ログイン成功 → 本文表示
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("realContent").classList.remove("hidden");
+
+    // ローカル記憶（次回の再入力不要）
+    localStorage.setItem("kmu_rugby_login", "true");
+
+  } else {
+    document.getElementById("errorMessage").textContent = "パスワードが違います。";
+  }
+}
+
+// ページ読み込み時、ログイン済みなら自動表示
+window.onload = function() {
+  if (localStorage.getItem("kmu_rugby_login") === "true") {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("realContent").classList.remove("hidden");
+  }
+};
+</script>
+
+
+
+
+</body>
+</html>
