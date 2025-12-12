@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ログイン画面用の簡易スタイル */
+    /* ===== パスワード入力画面 ===== */
     .login-wrapper {
       max-width: 360px;
       margin: 120px auto;
@@ -16,10 +16,6 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       text-align: center;
-    }
-
-    .login-wrapper h2 {
-      margin-bottom: 12px;
     }
 
     .login-wrapper input {
@@ -47,17 +43,16 @@
       display: none;
     }
   </style>
-
 </head>
+
 <body>
 
-
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
-<!--   ① パスワード入力画面          -->
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!-- ========================= -->
+<!-- ① パスワード入力画面 -->
+<!-- ========================= -->
 
 <div id="loginPage" class="login-wrapper">
-  <h2>OB会会員専用ページ</h2>
+  <h2>OB会 会員専用ページ</h2>
   <p>パスワードを入力してください。</p>
 
   <input type="password" id="passwordInput" placeholder="パスワード">
@@ -66,19 +61,13 @@
   <p id="errorMessage" style="color:red; margin-top:12px;"></p>
 </div>
 
-
-
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
-<!--   ② 本来のトップページ内容      -->
-<!--     （ログイン後に表示される）   -->
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!-- ========================= -->
+<!-- ② ログイン後の実ページ -->
+<!-- ========================= -->
 
 <div id="realContent" class="hidden">
 
-  <!-- ★ここから先は、あなたの現在の index.html の内容を丸ごと入れてください ★ -->
-  <!-- （省略できるように、必要部分だけ例として記述しています） -->
-
-
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">関西医科大学ラグビー部OB会</div>
@@ -94,6 +83,7 @@
     </div>
   </header>
 
+  <!-- メインビジュアル -->
   <section class="hero">
     <div class="container hero-inner">
       <h1>関西医科大学ラグビー部OB会</h1>
@@ -105,38 +95,124 @@
     </div>
   </section>
 
-  <!-- ★以下、あなたのトップページの続き（お知らせ・役員一覧など）をそのまま入れてください★ -->
+  <!-- ========================= -->
+  <!-- OB総会 出席確認（追加） -->
+  <!-- ========================= -->
 
+  <section class="section bg-light">
+    <div class="container" style="text-align:center;">
+      <h2>OB総会 出席確認</h2>
+      <p>
+        OB総会への出欠につきまして、オンラインフォームにて確認を行っております。<br>
+        下記ボタンよりご回答をお願いいたします。
+      </p>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSftuIo0PHO2qHyVyDwmG7qfKAvRCevszlMWopfFj7AuqxBk-A/viewform?usp=header"
+         target="_blank"
+         class="btn-main">
+        OB総会 出席確認
+      </a>
+    </div>
+  </section>
+
+  <!-- お知らせ -->
+  <section id="news" class="section">
+    <div class="container">
+      <h2>お知らせ</h2>
+
+      <ul class="news-list">
+        <li>
+          <span class="date">2025.12.01</span>
+          <span class="title">2026年度OB総会・懇親会を開催予定です</span>
+        </li>
+        <li>
+          <span class="date">2025.10.05</span>
+          <span class="title">OB会WEBサイトを公開しました</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OB会について -->
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <h2>OB会について</h2>
+      <p>
+        関西医科大学ラグビー部OB会は、母校ラグビー部の活動支援と、
+        OB・OG間の親睦を目的として運営されています。
+      </p>
+    </div>
+  </section>
+
+  <!-- 歴史 -->
+  <section id="history" class="section">
+    <div class="container">
+      <h2>ラグビー部の歴史</h2>
+      <ul class="history-list">
+        <li>19XX年　ラグビー部創部</li>
+        <li>20XX年　医学部リーグ 優勝</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 行事 -->
+  <section id="events" class="section bg-light">
+    <div class="container">
+      <h2>行事予定</h2>
+      <table class="simple-table">
+        <tr><th>日付</th><th>行事</th></tr>
+        <tr><td>2026/03</td><td>OB総会</td></tr>
+        <tr><td>2026/08</td><td>OB戦</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 写真 -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>写真ギャラリー</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">写真</div>
+        <div class="gallery-item">写真</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section id="contact" class="section bg-light">
+    <div class="container">
+      <h2>お問い合わせ</h2>
+      <p class="contact-mail">ob-kmu-rugby@example.com</p>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 関西医科大学ラグビー部OB会</p>
+    </div>
+  </footer>
 
 </div>
 
-
-
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
-<!--   ③ JavaScript（パスワード認証） -->
-<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!-- ========================= -->
+<!-- ③ パスワード制御JS -->
+<!-- ========================= -->
 
 <script>
 function checkPassword() {
   const input = document.getElementById("passwordInput").value;
-
-  // ★ここに自由なパスワードを設定 ★
-  const correctPassword = "kmu-rugby-makino";
+  const correctPassword = "kmu-rugby-makino"; // ★変更してください
 
   if (input === correctPassword) {
-    // ログイン成功 → 本文表示
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("realContent").classList.remove("hidden");
-
-    // ローカル記憶（次回の再入力不要）
     localStorage.setItem("kmu_rugby_login", "true");
-
   } else {
     document.getElementById("errorMessage").textContent = "パスワードが違います。";
   }
 }
 
-// ページ読み込み時、ログイン済みなら自動表示
 window.onload = function() {
   if (localStorage.getItem("kmu_rugby_login") === "true") {
     document.getElementById("loginPage").style.display = "none";
@@ -145,8 +221,6 @@ window.onload = function() {
 };
 </script>
 
-
-
-
 </body>
 </html>
+
