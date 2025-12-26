@@ -12,11 +12,9 @@
       --text:#111;
       --muted:#555;
       --line:#e6e8ef;
-      --accent:#0b3a2a; /* 深いグリーン */
-      --accent2:#0f5132;
-      --btn:#111;
-      --radius:14px;
+      --accent:#0b3a2a;
       --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:14px;
     }
     *{ box-sizing:border-box; }
     body{
@@ -28,13 +26,66 @@
       line-height:1.65;
     }
     a{ color:inherit; }
-    .container{
-      max-width:1080px;
-      margin:0 auto;
+    .container{ max-width:1080px; margin:0 auto; padding: 18px; }
+
+    /* Gate (Password Screen) */
+    .gate{
+      min-height: calc(100vh - 36px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .gate-card{
+      width: min(560px, 100%);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 18px;
     }
+    .gate-hero{
+      border-radius: 12px;
+      padding: 16px;
+      background: linear-gradient(120deg, var(--accent), #0b2f66);
+      color:#fff;
+      margin-bottom: 14px;
+    }
+    .gate-hero h1{ margin:0; font-size:1.25rem; }
+    .gate-hero p{ margin:6px 0 0; opacity:.92; font-size:.95rem; }
+    .field{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    input[type="password"]{
+      flex: 1 1 240px;
+      padding: 12px 12px;
+      border-radius: 10px;
+      border:1px solid var(--line);
+      font-size: 1rem;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid #111;
+      background:#111;
+      color:#fff;
+      cursor:pointer;
+    }
+    .btn:hover{ opacity:.92; }
+    .msg{ margin:10px 0 0; color:#b00020; font-weight:700; }
+    .gate-note{ margin-top:10px; color:var(--muted); font-size:.92rem; }
 
-    /* Header / Hero */
+    /* Site content (hidden until unlocked) */
+    .site{ display:none; }
+
     .hero{
       background: linear-gradient(120deg, var(--accent), #0b2f66);
       color:#fff;
@@ -55,23 +106,10 @@
       font-size:.92rem;
       opacity:.95;
     }
-    .badge-dot{
-      width:10px; height:10px; border-radius:999px;
-      background:#fff;
-      opacity:.9;
-    }
-    h1{
-      margin:0;
-      font-size: 1.55rem;
-      letter-spacing:.02em;
-    }
-    .hero p{
-      margin:0;
-      color: rgba(255,255,255,.92);
-      font-size: .98rem;
-    }
+    .badge-dot{ width:10px; height:10px; border-radius:999px; background:#fff; opacity:.9; }
+    h1{ margin:0; font-size: 1.55rem; letter-spacing:.02em; }
+    .hero p{ margin:0; color: rgba(255,255,255,.92); font-size: .98rem; }
 
-    /* Nav */
     .nav{
       margin-top: 12px;
       display:flex;
@@ -89,7 +127,6 @@
     }
     .nav a:hover{ background: rgba(255,255,255,.20); }
 
-    /* Layout */
     .grid{
       margin-top: 18px;
       display:grid;
@@ -97,13 +134,9 @@
       grid-template-columns: 1fr;
     }
     @media (min-width: 960px){
-      .grid{
-        grid-template-columns: 1fr 1fr;
-        align-items:start;
-      }
+      .grid{ grid-template-columns: 1fr 1fr; align-items:start; }
     }
 
-    /* Cards */
     .card{
       background:var(--card);
       border:1px solid var(--line);
@@ -111,9 +144,7 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .card-head{
-      padding:14px 14px 0;
-    }
+    .card-head{ padding:14px 14px 0; }
     .card-title{
       margin:0;
       font-size:1.12rem;
@@ -133,7 +164,8 @@
     }
     .card-body{ padding: 10px 14px 14px; }
     .muted{ color: var(--muted); font-size: .95rem; margin: 6px 0 0; }
-    .btn{
+
+    .btnlink{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -146,29 +178,18 @@
       background:#fff;
       margin-top: 10px;
     }
-    .btn:hover{ opacity:.92; }
-    .btn.primary{
+    .btnlink.primary{
       background:#111;
       color:#fff;
       border-color:#111;
     }
-    .btn-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
+    .btnlink:hover{ opacity:.92; }
+    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
 
-    /* Embeds */
     iframe{ width:100%; border:none; display:block; }
     .embed-wrap{ padding: 12px 14px 14px; }
-    .embed-note{
-      padding: 0 14px 14px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
+    .embed-note{ padding: 0 14px 14px; color: var(--muted); font-size: .92rem; }
 
-    /* Footer */
     footer{
       margin-top: 18px;
       color: var(--muted);
@@ -182,107 +203,170 @@
 <body>
   <div class="container">
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="badge"><span class="badge-dot"></span>公式サイト（OB会運営）</div>
-        <h1>関西医科大学ラグビー部 OB会</h1>
-        <p>連絡先登録・お知らせ・活動予定・部誌をまとめてご案内します。</p>
+    <!-- ===== Password Gate ===== -->
+    <div class="gate" id="gate">
+      <div class="gate-card">
+        <div class="gate-hero">
+          <h1>関西医科大学ラグビー部 OB会</h1>
+          <p>会員向けページです。パスワードを入力してください。</p>
+        </div>
 
-        <!-- Quick Nav -->
-        <nav class="nav" aria-label="ページ内ナビゲーション">
-          <a href="#contact">連絡先登録</a>
-          <a href="#news">お知らせ</a>
-          <a href="#schedule">活動予定</a>
-          <a href="#bulletin">部誌</a>
-        </nav>
+        <label for="pw"><strong>パスワード</strong></label>
+        <div class="field">
+          <input id="pw" type="password" placeholder="パスワードを入力" autocomplete="current-password" />
+          <button class="btn" id="btnEnter" type="button">入室</button>
+        </div>
+        <div class="msg" id="msg" style="display:none;">パスワードが違います。</div>
+        <div class="gate-note">
+          ※この仕組みは「簡易的な閲覧制限」です。厳密な認証ではありません。<br>
+          ※パスワードは関係者のみに共有してください。
+        </div>
       </div>
-    </header>
+    </div>
 
-    <!-- CONTENT GRID -->
-    <main class="grid">
+    <!-- ===== Site Content (hidden until unlocked) ===== -->
+    <div class="site" id="site">
 
-      <!-- 左列：連絡先 + 部誌 -->
-      <div>
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-inner">
+          <div class="badge"><span class="badge-dot"></span>公式サイト（OB会運営）</div>
+          <h1>関西医科大学ラグビー部 OB会</h1>
+          <p>連絡先登録・お知らせ・活動予定・部誌をまとめてご案内します。</p>
 
-        <!-- ① 連絡先フォーム -->
-        <section class="card" id="contact">
-          <div class="card-head">
-            <h2 class="card-title"><span class="icon">✉</span>OB会 名簿用 連絡先確認・登録</h2>
-            <p class="muted">住所やメール連絡希望など、該当する項目のみご入力ください。</p>
-          </div>
-          <div class="card-body">
-            <div class="btn-row">
-              <a class="btn primary"
-                 href="https://docs.google.com/forms/d/e/1FAIpQLSeCmVJEP1rfuQdIvcYm5URyk_26z0yZFeivVwO6i3mG4ubHJA/viewform?usp=publish-editor"
-                 target="_blank" rel="noopener noreferrer">
-                ▶ 連絡先入力フォームを開く
-              </a>
+          <nav class="nav" aria-label="ページ内ナビゲーション">
+            <a href="#contact">連絡先登録</a>
+            <a href="#news">お知らせ</a>
+            <a href="#schedule">活動予定</a>
+            <a href="#bulletin">部誌</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="grid">
+
+        <!-- Left: Contact + Bulletin -->
+        <div>
+
+          <!-- ① 連絡先フォーム -->
+          <section class="card" id="contact">
+            <div class="card-head">
+              <h2 class="card-title"><span class="icon">✉</span>OB会 名簿用 連絡先確認・登録</h2>
+              <p class="muted">住所やメール連絡希望など、該当する項目のみご入力ください。</p>
             </div>
-            <p class="muted">※入力内容はOB会の連絡・部誌送付等の目的に限り利用します。</p>
-          </div>
-        </section>
-
-        <!-- ④ 部誌ページリンク -->
-        <section class="card" id="bulletin" style="margin-top:16px;">
-          <div class="card-head">
-            <h2 class="card-title"><span class="icon">📘</span>部誌</h2>
-            <p class="muted">最新号やアーカイブは部誌ページからご覧いただけます。</p>
-          </div>
-          <div class="card-body">
-            <div class="btn-row">
-              <a class="btn" href="bulletin.html">▶ 部誌公開ページへ</a>
+            <div class="card-body">
+              <div class="btn-row">
+                <a class="btnlink primary"
+                   href="https://docs.google.com/forms/d/e/1FAIpQLSeCmVJEP1rfuQdIvcYm5URyk_26z0yZFeivVwO6i3mG4ubHJA/viewform?usp=publish-editor"
+                   target="_blank" rel="noopener noreferrer">
+                  ▶ 連絡先入力フォームを開く
+                </a>
+              </div>
+              <p class="muted">※入力内容はOB会の連絡・部誌送付等の目的に限り利用します。</p>
             </div>
-          </div>
-        </section>
+          </section>
 
-      </div>
+          <!-- ④ 部誌ページリンク -->
+          <section class="card" id="bulletin" style="margin-top:16px;">
+            <div class="card-head">
+              <h2 class="card-title"><span class="icon">📘</span>部誌</h2>
+              <p class="muted">最新号やアーカイブは部誌ページからご覧いただけます。</p>
+            </div>
+            <div class="card-body">
+              <div class="btn-row">
+                <a class="btnlink" href="bulletin.html">▶ 部誌公開ページへ</a>
+              </div>
+            </div>
+          </section>
 
-      <!-- 右列：お知らせ + 予定 -->
-      <div>
+        </div>
 
-        <!-- ② お知らせ（スプレッドシート埋め込み） -->
-        <section class="card" id="news">
-          <div class="card-head">
-            <h2 class="card-title"><span class="icon">🗞</span>お知らせ</h2>
-            <p class="muted">最新情報はスプレッドシート更新のみで自動反映されます。</p>
-          </div>
+        <!-- Right: News + Schedule -->
+        <div>
 
-          <div class="embed-wrap">
-            <iframe
-              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT2CNdb3UMpKUIb5k-WElzt-iv8sBftYOga0gkMO6jgciZNJNfLwVee0T2u8MajPtfjxQ22ESKh45Xi/pubhtml?gid=0&single=true&widget=true&headers=false"
-              height="320"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="embed-note">※表示が切れる場合は、iframeの高さ（height）を少し増やしてください。</div>
-        </section>
+          <!-- ② お知らせ -->
+          <section class="card" id="news">
+            <div class="card-head">
+              <h2 class="card-title"><span class="icon">🗞</span>お知らせ</h2>
+              <p class="muted">最新情報はスプレッドシート更新のみで自動反映されます。</p>
+            </div>
 
-        <!-- ③ 活動予定（Googleカレンダー埋め込み） -->
-        <section class="card" id="schedule" style="margin-top:16px;">
-          <div class="card-head">
-            <h2 class="card-title"><span class="icon">📅</span>活動予定（練習・試合日程）</h2>
-            <p class="muted">日程はGoogleカレンダーの更新のみで自動反映されます。</p>
-          </div>
+            <div class="embed-wrap">
+              <iframe
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT2CNdb3UMpKUIb5k-WElzt-iv8sBftYOga0gkMO6jgciZNJNfLwVee0T2u8MajPtfjxQ22ESKh45Xi/pubhtml?gid=0&single=true&widget=true&headers=false"
+                height="320"
+                loading="lazy">
+              </iframe>
+            </div>
+            <div class="embed-note">※表示が切れる場合は、iframeの高さ（height）を少し増やしてください。</div>
+          </section>
 
-          <div class="embed-wrap">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?src=kmu.rugby.ob%40gmail.com&ctz=Asia%2FTokyo"
-              height="650"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="embed-note">※スマホではスクロールが多くなるため、必要に応じて高さを調整してください。</div>
-        </section>
+          <!-- ③ 活動予定 -->
+          <section class="card" id="schedule" style="margin-top:16px;">
+            <div class="card-head">
+              <h2 class="card-title"><span class="icon">📅</span>活動予定（練習・試合日程）</h2>
+              <p class="muted">日程はGoogleカレンダーの更新のみで自動反映されます。</p>
+            </div>
 
-      </div>
+            <div class="embed-wrap">
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=kmu.rugby.ob%40gmail.com&ctz=Asia%2FTokyo"
+                height="650"
+                loading="lazy">
+              </iframe>
+            </div>
+            <div class="embed-note">※スマホではスクロールが多くなるため、必要に応じて高さを調整してください。</div>
+          </section>
 
-    </main>
+        </div>
 
-    <footer>
-      © 関西医科大学ラグビー部OB会
-    </footer>
+      </main>
 
+      <footer>
+        © 関西医科大学ラグビー部OB会
+      </footer>
+
+    </div>
   </div>
+
+  <script>
+    // ====== Settings ======
+    const PASSWORD = "kmu-rugby-makino"; // ★ここを書き換えてください（例：kmuOB2025 など）
+
+    // ====== Elements ======
+    const gate = document.getElementById("gate");
+    const site = document.getElementById("site");
+    const pw = document.getElementById("pw");
+    const msg = document.getElementById("msg");
+    const btnEnter = document.getElementById("btnEnter");
+
+    // ====== Helpers ======
+    function unlock() {
+      gate.style.display = "none";
+      site.style.display = "block";
+    }
+    function fail() {
+      msg.style.display = "block";
+      pw.select();
+    }
+    function tryEnter() {
+      msg.style.display = "none";
+      if ((pw.value || "").trim() === PASSWORD) {
+        // 簡易的に「この端末では次回以降パスワード不要」にしたい場合は下を有効化
+        // localStorage.setItem("kmu_ob_unlocked", "1");
+        unlock();
+      } else {
+        fail();
+      }
+    }
+
+    // Optional: remember unlocked state (disabled by default)
+    // if (localStorage.getItem("kmu_ob_unlocked") === "1") unlock();
+
+    btnEnter.addEventListener("click", tryEnter);
+    pw.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryEnter();
+    });
+  </script>
 </body>
 </html>
