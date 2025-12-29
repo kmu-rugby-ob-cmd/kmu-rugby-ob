@@ -2,291 +2,206 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>関西医科大学ラグビー部OB会</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    :root{
-      --bg:#f5f7fb; --card:#fff; --text:#111; --muted:#555; --line:#e6e8ef;
-      --accent:#0b3a2a; --shadow:0 10px 25px rgba(0,0,0,.06); --radius:14px;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP",
-                   "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.65;
-    }
-    a{ color:inherit; }
-    .container{ max-width:1080px; margin:0 auto; padding: 18px; }
-
-    /* Gate */
-    .gate{
-      min-height: calc(100vh - 36px);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .gate-card{
-      width: min(560px, 100%);
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-    .gate-hero{
-      border-radius: 12px;
-      padding: 16px;
-      background: linear-gradient(120deg, var(--accent), #0b2f66);
-      color:#fff;
-      margin-bottom: 14px;
-    }
-    .gate-hero h1{ margin:0; font-size:1.25rem; }
-    .gate-hero p{ margin:6px 0 0; opacity:.92; font-size:.95rem; }
-    .field{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-    input[type="password"]{
-      flex: 1 1 240px;
-      padding: 12px;
-      border-radius: 10px;
-      border:1px solid var(--line);
-      font-size: 1rem;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      text-decoration:none; font-weight:800;
-      border-radius: 10px;
-      padding: 12px 14px;
-      border: 1px solid #111;
-      background:#111; color:#fff;
-      cursor:pointer;
-    }
-    .btn:hover{ opacity:.92; }
-    .msg{ margin:10px 0 0; color:#b00020; font-weight:800; display:none; }
-    .gate-note{ margin-top:10px; color:var(--muted); font-size:.92rem; }
-
-    /* Site */
-    .site{ display:none; }
-
-    .hero{
-      background: linear-gradient(120deg, var(--accent), #0b2f66);
-      color:#fff; border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hero-inner{ padding: 22px 18px; display:grid; gap:14px; }
-    .badge{ display:inline-flex; align-items:center; gap:8px; font-size:.92rem; opacity:.95; }
-    .badge-dot{ width:10px; height:10px; border-radius:999px; background:#fff; opacity:.9; }
-    h1{ margin:0; font-size: 1.55rem; letter-spacing:.02em; }
-    .hero p{ margin:0; color: rgba(255,255,255,.92); font-size: .98rem; }
-
-    .nav{ margin-top: 12px; display:flex; flex-wrap:wrap; gap:10px; }
-    .nav a{
-      text-decoration:none;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.22);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: .95rem;
-    }
-    .nav a:hover{ background: rgba(255,255,255,.20); }
-
-    .grid{ margin-top: 18px; display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media (min-width: 960px){ .grid{ grid-template-columns: 1fr 1fr; align-items:start; } }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card-head{ padding:14px 14px 0; }
-    .card-title{ margin:0; font-size:1.12rem; display:flex; gap:10px; align-items:center; }
-    .icon{
-      width:28px; height:28px;
-      border-radius:10px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background: #f0f3ff; border:1px solid #e5e9ff;
-      font-weight:900;
-    }
-    .card-body{ padding: 10px 14px 14px; }
-    .muted{ color: var(--muted); font-size: .95rem; margin: 6px 0 0; }
-    .btnlink{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      text-decoration:none; font-weight:900;
-      border-radius: 12px;
-      padding: 11px 14px;
-      border: 1px solid #111;
-      background:#fff;
-      margin-top: 10px;
-    }
-    .btnlink.primary{ background:#111; color:#fff; border-color:#111; }
-    .btnlink:hover{ opacity:.92; }
-    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-
-    iframe{ width:100%; border:none; display:block; }
-    .embed-wrap{ padding: 12px 14px 14px; }
-    .embed-note{ padding: 0 14px 14px; color: var(--muted); font-size: .92rem; }
-
-    footer{ margin-top: 18px; color: var(--muted); font-size: .92rem; text-align:center; padding: 12px 0 6px; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <div class="container">
+  <!-- Password Gate -->
+  <div id="gate" class="gate">
+    <div class="gate__card">
+      <h2>会員専用ページ</h2>
+      <p class="muted">
+        このページはOB会会員向けです。<br>
+        合言葉（パスワード）を入力してください。<br>
+        ※ いったん通過すると<strong>24時間</strong>は再入力不要です。
+      </p>
 
-    <!-- Gate -->
-    <div class="gate" id="gate">
-      <div class="gate-card">
-        <div class="gate-hero">
-          <h1>関西医科大学ラグビー部 OB会</h1>
-          <p>会員向けページです。パスワードを入力してください。</p>
-        </div>
-
-        <label for="pw"><strong>パスワード</strong></label>
-        <div class="field">
-          <input id="pw" type="password" placeholder="パスワードを入力" autocomplete="current-password" />
-          <button class="btn" id="btnEnter" type="button">入室</button>
-        </div>
-        <div class="msg" id="msg">パスワードが違います。</div>
-        <div class="gate-note">
-          ※本サイトの閲覧制限は「簡易的なゲート」です（厳密な認証ではありません）。<br>
-          ※この端末では、当日中は再入力不要（翌日になったら再入力）となります。
-        </div>
+      <div class="gate__row">
+        <input id="pw" type="password" placeholder="パスワード" autocomplete="current-password" />
+        <button id="pwBtn" class="btn btn--primary">入室</button>
       </div>
-    </div>
+      <p id="pwErr" class="error" aria-live="polite"></p>
 
-    <!-- Site -->
-    <div class="site" id="site">
-
-      <header class="hero">
-        <div class="hero-inner">
-          <div class="badge"><span class="badge-dot"></span>公式サイト（OB会運営）</div>
-          <h1>関西医科大学ラグビー部 OB会</h1>
-          <p>連絡先登録・お知らせ・活動予定・部誌をまとめてご案内します。</p>
-          <nav class="nav" aria-label="ページ内ナビゲーション">
-            <a href="#contact">連絡先登録</a>
-            <a href="#news">お知らせ</a>
-            <a href="#schedule">活動予定</a>
-            <a href="#bulletin">部誌</a>
-          </nav>
-        </div>
-      </header>
-
-      <main class="grid">
-
-        <div>
-          <section class="card" id="contact">
-            <div class="card-head">
-              <h2 class="card-title"><span class="icon">✉</span>OB会 名簿用 連絡先確認・登録</h2>
-              <p class="muted">住所やメール連絡希望など、該当する項目のみご入力ください。</p>
-            </div>
-            <div class="card-body">
-              <div class="btn-row">
-                <a class="btnlink primary"
-                   href="https://docs.google.com/forms/d/e/1FAIpQLSeCmVJEP1rfuQdIvcYm5URyk_26z0yZFeivVwO6i3mG4ubHJA/viewform?usp=publish-editor"
-                   target="_blank" rel="noopener noreferrer">
-                  ▶ 連絡先入力フォームを開く
-                </a>
-              </div>
-              <p class="muted">※入力内容はOB会の連絡・部誌送付等の目的に限り利用します。</p>
-            </div>
-          </section>
-
-          <section class="card" id="bulletin" style="margin-top:16px;">
-            <div class="card-head">
-              <h2 class="card-title"><span class="icon">📘</span>部誌</h2>
-              <p class="muted">部誌は部誌ページからご覧いただけます（PDFはGitHubに置くだけで更新）。</p>
-            </div>
-            <div class="card-body">
-              <div class="btn-row">
-                <a class="btnlink" href="bulletin.html">▶ 部誌公開ページへ</a>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <div>
-          <section class="card" id="news">
-            <div class="card-head">
-              <h2 class="card-title"><span class="icon">🗞</span>お知らせ</h2>
-              <p class="muted">最新情報はスプレッドシート更新のみで自動反映されます。</p>
-            </div>
-            <div class="embed-wrap">
-              <iframe
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT2CNdb3UMpKUIb5k-WElzt-iv8sBftYOga0gkMO6jgciZNJNfLwVee0T2u8MajPtfjxQ22ESKh45Xi/pubhtml?gid=0&single=true&widget=true&headers=false"
-                height="320"
-                loading="lazy">
-              </iframe>
-            </div>
-            <div class="embed-note">※表示が切れる場合は、iframeの高さ（height）を少し増やしてください。</div>
-          </section>
-
-          <section class="card" id="schedule" style="margin-top:16px;">
-            <div class="card-head">
-              <h2 class="card-title"><span class="icon">📅</span>活動予定（練習・試合日程）</h2>
-              <p class="muted">日程はGoogleカレンダーの更新のみで自動反映されます。</p>
-            </div>
-            <div class="embed-wrap">
-              <iframe
-                src="https://calendar.google.com/calendar/embed?src=kmu.rugby.ob%40gmail.com&ctz=Asia%2FTokyo"
-                height="650"
-                loading="lazy">
-              </iframe>
-            </div>
-            <div class="embed-note">※スマホではスクロールが多くなるため、必要に応じて高さを調整してください。</div>
-          </section>
-        </div>
-
-      </main>
-
-      <footer>© 関西医科大学ラグビー部OB会</footer>
+      <div class="gate__foot muted">
+        ※ パスワードは第三者に共有しないでください。
+      </div>
     </div>
   </div>
 
+  <!-- Site -->
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand">
+        <div class="brand__badge">KMU</div>
+        <div class="brand__text">
+          <div class="brand__title">関西医科大学ラグビー部OB会</div>
+          <div class="brand__subtitle">Kansai Medical University Rugby Alumni</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#contact" class="nav__link">連絡先登録</a>
+        <a href="#news" class="nav__link">お知らせ</a>
+        <a href="#schedule" class="nav__link">予定表</a>
+        <a href="accounting.html" class="nav__link nav__link--highlight">会計年次報告</a>
+        <a href="magazine.html" class="nav__link">部誌</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero__inner">
+        <h1>OB会ホームページ</h1>
+        <p>
+          連絡先の更新・最新のお知らせ・練習／試合予定・会計報告・部誌の閲覧をまとめています。
+          <br>※ 内容は随時更新されます。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">連絡先登録フォームへ</a>
+          <a class="btn" href="magazine.html">部誌を見る</a>
+          <a class="btn" href="accounting.html">会計年次報告</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- Contact -->
+      <article id="contact" class="card">
+        <h2>連絡先の確認・登録</h2>
+        <p class="muted">
+          OB会からのご連絡（メール／郵送）に必要な情報の確認・更新をお願いします。
+        </p>
+        <a class="btn btn--primary" target="_blank" rel="noopener"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSeCmVJEP1rfuQdIvcYm5URyk_26z0yZFeivVwO6i3mG4ubHJA/viewform?usp=publish-editor">
+          連絡先登録フォームを開く
+        </a>
+        <p class="muted small">
+          ※ フォームが開かない場合は、ブラウザ（Chrome/Edge/Safari）でお試しください。
+        </p>
+      </article>
+
+      <!-- Accounting Link -->
+      <article class="card">
+        <h2>会計年次報告</h2>
+        <p class="muted">
+          年度ごとの収入・支出・差額や支出内訳などを、会員向けに分かりやすく公開します。
+        </p>
+        <a class="btn btn--primary" href="accounting.html">会計年次報告を見る</a>
+        <p class="muted small">
+          ※ 個人情報（振込人名など）は掲載しません。
+        </p>
+      </article>
+
+      <!-- Magazine Link -->
+      <article class="card">
+        <h2>部誌（PDF）</h2>
+        <p class="muted">
+          部誌はPDFで閲覧できます。年度ごとの一覧ページにまとめています。
+        </p>
+        <a class="btn" href="magazine.html">部誌ページへ</a>
+      </article>
+    </section>
+
+    <!-- News -->
+    <section id="news" class="section">
+      <div class="section__head">
+        <h2>お知らせ</h2>
+        <p class="muted">最新のお知らせを表示します（Googleスプレッドシート連携）。</p>
+      </div>
+
+      <div class="embed">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT2CNdb3UMpKUIb5k-WElzt-iv8sBftYOga0gkMO6jgciZNJNfLwVee0T2u8MajPtfjxQ22ESKh45Xi/pubhtml?gid=0&single=true"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="お知らせ">
+        </iframe>
+      </div>
+
+      <p class="muted small">
+        ※ 表が崩れる場合は、シート側の列幅を少し広げると改善します。
+      </p>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="section">
+      <div class="section__head">
+        <h2>活動予定表</h2>
+        <p class="muted">練習日程・試合日程など（Googleカレンダー連携）。</p>
+      </div>
+
+      <div class="embed embed--calendar">
+        <iframe
+          src="https://calendar.google.com/calendar/embed?src=kmu.rugby.ob%40gmail.com&ctz=Asia%2FTokyo"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="活動予定表">
+        </iframe>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="muted small">
+          ※ 本サイトは関西医科大学ラグビー部OB会の会員向け情報を掲載しています。<br>
+          ※ 内容の転載は禁止転載はご遠慮ください。
+        </div>
+      </div>
+    </footer>
+  </main>
+
   <script>
-    // ====== Settings ======
-    const PASSWORD = "kmu-rugby-makino"; // ★ここを書き換え
-    const KEY = "kmu_ob_unlocked_until";     // 保存キー（今日の終わりまで）
+    // ===== Password Gate (24h) =====
+    // 既存サイトの合言葉をここに設定してください（以前の「全体パスワード」）
+    const SITE_PASSWORD = "kmu-rugby-makino"; // ←必ず変更
 
-    // ====== Elements ======
+    const KEY = "kmu_ob_gate_until"; // localStorage key
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
     const gate = document.getElementById("gate");
-    const site = document.getElementById("site");
     const pw = document.getElementById("pw");
-    const msg = document.getElementById("msg");
-    const btnEnter = document.getElementById("btnEnter");
+    const pwBtn = document.getElementById("pwBtn");
+    const pwErr = document.getElementById("pwErr");
 
-    function todayEndTimestamp() {
-      const now = new Date();
-      const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
-      return end.getTime();
-    }
-    function unlock() { gate.style.display = "none"; site.style.display = "block"; }
-    function lock() { gate.style.display = "flex"; site.style.display = "none"; }
+    function now() { return Date.now(); }
 
-    function checkAutoUnlock() {
+    function isAllowed() {
       const until = Number(localStorage.getItem(KEY) || 0);
-      if (until && Date.now() <= until) unlock();
-      else { localStorage.removeItem(KEY); lock(); }
+      return until && until > now();
     }
 
-    function tryEnter() {
-      msg.style.display = "none";
-      if ((pw.value || "").trim() === PASSWORD) {
-        localStorage.setItem(KEY, String(todayEndTimestamp()));
-        unlock();
+    function openSite() {
+      gate.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function lockSite() {
+      gate.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function tryLogin() {
+      if (pw.value === SITE_PASSWORD) {
+        localStorage.setItem(KEY, String(now() + ONE_DAY_MS));
+        pwErr.textContent = "";
+        openSite();
       } else {
-        msg.style.display = "block";
-        pw.select();
+        pwErr.textContent = "パスワードが違います。もう一度お試しください。";
+        pw.value = "";
+        pw.focus();
       }
     }
 
-    checkAutoUnlock();
-    btnEnter.addEventListener("click", tryEnter);
-    pw.addEventListener("keydown", (e) => { if (e.key === "Enter") tryEnter(); });
+    // init
+    if (isAllowed()) openSite(); else lockSite();
+
+    pwBtn.addEventListener("click", tryLogin);
+    pw.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryLogin();
+    });
   </script>
 </body>
 </html>
-
